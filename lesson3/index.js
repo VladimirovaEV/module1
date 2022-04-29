@@ -1,18 +1,11 @@
 {
-    const productName = "яблоко";
-    const quantityOfProduct = 2;
-    const categoryOfProduct = "фрукты";
-    const priceOfProduct = 100;
+    const productName = prompt("Введите наименование товара");
+    const quantityOfProduct = Number(prompt("Введите количество товара"));
+    const categoryOfProduct = prompt("Введите категорию товара");
+    const priceOfProduct = Number(prompt("Введите цену товара"));
 
-    const sum = quantityOfProduct * priceOfProduct;
-
-    console.log(productName);
-    console.log(sum);
+    console.log(typeof quantityOfProduct);
+    console.log(typeof priceOfProduct);
+    console.log(`На складе ${quantityOfProduct} единиц товара ${productName} на сумму ${quantityOfProduct*priceOfProduct} деревянных`);
 }
 
-{
-    const newProductName = "картофель";
-    const quantityOfNewProduct = 5;
-    const categoryOfNewProduct = "овощи";
-    const priceOfNewProduct = 70;
-}

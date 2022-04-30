@@ -1,11 +1,19 @@
 {
     const productName = prompt("Введите наименование товара");
-    const quantityOfProduct = Number(prompt("Введите количество товара"));
+    const quantityOfProduct = prompt("Введите количество товара");
+    if (typeof quantityOfProduct !== Number) {
+        prompt("Вы ввели некорректные данные");
+    }
     const categoryOfProduct = prompt("Введите категорию товара");
-    const priceOfProduct = Number(prompt("Введите цену товара"));
+    const priceOfProduct = prompt("Введите цену товара");
+    if (typeof priceOfProduct !== Number) {
+        prompt("Вы ввели некорректные данные");
+    }
 
-    console.log(typeof quantityOfProduct);
-    console.log(typeof priceOfProduct);
-    console.log(`На складе ${quantityOfProduct} единиц товара ${productName} на сумму ${quantityOfProduct*priceOfProduct} деревянных`);
+    // или можно вывести сообщение о некорректных данных в конце
+    // if (typeof quantityOfProduct !== Number || typeof priceOfProduct !== Number) {
+    //    prompt("Вы ввели некорректные данные");
+   // }
+
 }
 

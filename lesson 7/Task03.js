@@ -10,3 +10,4 @@ const addPrefix = (arr, str) => {
 }
 
 console.log(addPrefix(names, 'Mr'));
+

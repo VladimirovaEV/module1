@@ -1,7 +1,6 @@
 'use strict';
 (() => {
   const FIGURES_RUS = ['камень', 'ножницы', 'бумага'];
-  const FIGURES_LETTER = ['к', 'н', 'б'];
   const getRandomIntInclusive = (min, max) => {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -17,79 +16,31 @@
       console.log(computerFigure);
       const playerFigure = ((prompt('камень, ножницы, бумага?')).toLowerCase()).trim();
       const outMessage = function() {
-          confirm('Точно ли вы хотите выйти?')
-        ? alert(`Результат:\nКомпьютер: ${result.computer}\nИгрок: ${result.player}`) : start()
+        confirm('Точно ли вы хотите выйти?')
+        ? alert(`Результат:\nКомпьютер: ${result.computer}\nИгрок: ${result.player}`) : start();
+        return;
       };
       const message = function() {
           confirm('Ещё?') ? start() : outMessage();
       };
-      if ((playerFigure === '') || (FIGURES_RUS.includes(playerFigure) === false)) {
+      let playerFigureResult = FIGURES_RUS.find(item => item.charAt(0) === playerFigure.charAt(0));
+      if (playerFigure === '') {
         start();
       };
       if (playerFigure === computerFigure) {
         alert(`Компьютер: ${computerFigure}\nВы: ${playerFigure}\nНичья`);
         start();
       }
-      if (computerFigure === 'камень') {
-        if (playerFigure === 'бумага') {
-          FIGURES_LETTER.forEach((item) => {
-            if (playerFigure.charAt(0) === item) {
-              result.player += 1;
-              alert(`Компьютер: ${computerFigure}\nВы: ${playerFigure}\nВы выиграли`);
-              message();
-            }
-          });
-        };
-        if (playerFigure === 'ножницы') {
-          FIGURES_LETTER.forEach((item) => {
-            if (playerFigure.charAt(0) === item) {
-              result.computer += 1;
-              alert(`Компьютер: ${computerFigure}\nВы: ${playerFigure}\nКомпьютер выиграл`);
-              message();
-            }
-          });
-        };
+      if ((computerFigure === FIGURES_RUS[0] && playerFigure.charAt(0) === FIGURES_RUS[2].charAt(0)) || (computerFigure === FIGURES_RUS[1] && playerFigure.charAt(0) === FIGURES_RUS[0].charAt(0)) || (computerFigure === FIGURES_RUS[2] && playerFigure.charAt(0) === FIGURES_RUS[1].charAt(0))) {
+        result.player += 1;
+        alert(`Компьютер: ${computerFigure}\nВы: ${playerFigureResult}\nВы выиграли`);
+        message();
+      } else {
+        result.computer += 1;
+        alert(`Компьютер: ${computerFigure}\nВы: ${playerFigureResult}\nКомпьютер выиграл`);
+        message();
       }
-      if (computerFigure === 'ножницы') {
-        if (playerFigure === 'бумага') {
-          FIGURES_LETTER.forEach((item) => {
-            if (playerFigure.charAt(0) === item) {
-              result.computer += 1;
-              alert(`Компьютер: ${computerFigure}\nВы: ${playerFigure}\nКомпьютер выиграл`);
-              message();
-            }
-          });
-        };
-        if (playerFigure === 'камень') {
-          FIGURES_LETTER.forEach((item) => {
-            if (playerFigure.charAt(0) === item) {
-              result.player += 1;
-              alert(`Компьютер: ${computerFigure}\nВы: ${playerFigure}\nВы выиграли`);
-              message();
-            }
-          });
-        };
-      }
-      if (computerFigure === 'бумага') {
-        if (playerFigure === 'камень') {
-          FIGURES_LETTER.forEach((item) => {
-            if (playerFigure.charAt(0) === item) {
-              result.computer += 1;
-              alert(`Компьютер: ${computerFigure}\nВы: ${playerFigure}\nКомпьютер выиграл`);
-              message();
-            }
-          });
-        };
-        if (playerFigure === 'ножницы') {
-          FIGURES_LETTER.forEach((item) => {
-            if (playerFigure.charAt(0) === item) {
-              result.player += 1;
-              alert(`Компьютер: ${computerFigure}\nВы: ${playerFigure}\nВы выиграли`);
-              message();
-            }
-          });
-        };
-      }
+
       if (playerFigure === null) {
         outMessage();
       }
@@ -98,36 +49,3 @@
   window.RPS = game;
 })();
 
-// if (computerFigure === 'камень') {
-//           if (playerFigure === 'бумага') {
-//             result.player += 1;
-//             alert(`Компьютер: ${computerFigure}\nВы: ${playerFigure}\nВы выиграли`);
-//             message();
-//           } else if (playerFigure === 'ножницы') {
-//             result.computer += 1;
-//             alert(`Компьютер: ${computerFigure}\nВы: ${playerFigure}\nКомпьютер выиграл`);
-//             message();
-//           }
-//         }
-//         if (computerFigure === 'ножницы') {
-//           if (playerFigure === 'бумага') {
-//             result.computer += 1;
-//             alert(`Компьютер: ${computerFigure}\nВы: ${playerFigure}\nКомпьютер выиграл`);
-//             message();
-//           } else if (playerFigure === 'камень') {
-//             result.player += 1;
-//             alert(`Компьютер: ${computerFigure}\nВы: ${playerFigure}\nВы выиграли`);
-//             message();
-//           }
-//         }
-//         if (computerFigure === 'бумага') {
-//           if (playerFigure === 'камень') {
-//             result.computer += 1;
-//             alert(`Компьютер: ${computerFigure}\nВы: ${playerFigure}\nКомпьютер выиграл`);
-//             message();
-//           } else if (playerFigure === 'ножницы') {
-//             result.player += 1;
-//             alert(`Компьютер: ${computerFigure}\nВы: ${playerFigure}\nВы выиграли`);
-//             message();
-//           }
-//         }

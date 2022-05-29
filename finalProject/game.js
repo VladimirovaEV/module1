@@ -14,29 +14,46 @@
     return function start() {
       const resultMessage = () => {
         alert(`Ваш результат - ${result.player}\nРезультат компьютера - ${result.computer}`);
-      }
+      };
       const winner = () => {
         result.computer <= 0 ? alert(`Вы выиграли`) : alert(`Вы проиграли`);
-      }
-      const playerBall = Number(prompt(`Загадай число от 1 до ${result.player}`));
+      };
+      const outMessage = function() {
+        confirm('Точно ли вы хотите выйти?') ? null : start();
+      };
+      const message = function() {
+          confirm('Ещё?') ? start() : outMessage();
+      };
+      const playerChoice = prompt(`Загадай число от 1 до ${result.player}`);
+      const playerBall = Number(playerChoice);
       const computerBall = getRandomIntInclusive(1, result.computer);
-      alert(`Компьютер: ${computerBall}`);
+      const computerChoice = function() {
+        alert(`Компьютер загадал: ${computerBall}`);
+      };
+      if (playerChoice === '0') {
+        alert(`Число должно быть больше 0`);
+        start();
+      }
+      if (playerChoice === null) {
+        outMessage();
+        return;
+      }
       if (computerBall === playerBall) {
         result.player -= computerBall;
         result.computer += computerBall;
-        resultMessage();
       } else {
         result.player += computerBall;
         result.computer -= computerBall;
-        resultMessage();
       }
+      computerChoice();
+      resultMessage();
       if (result.computer <= 0 || result.player <= 0) {
         winner();
-        return;
+        message();
       } else {
         start();
       }
     };
-};
-window.RPS = game();
+  };
+  window.RPS = game();
 })();
